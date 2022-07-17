@@ -1,4 +1,5 @@
 build/
 .vscode/.cortex-debug*
 .vscode/*.log
-.vscode/settings.json
+.cache/*
+compile_commands.json

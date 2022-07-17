@@ -1,12 +1,15 @@
 /**************************************************************************//**
  * @file     wwdt.c
  * @version  V3.00
- * @brief    M480 series WWDT driver source file
+ * $Revision: 2 $
+ * $Date: 15/05/06 10:18a $
+ * @brief    NUC230_240 series WWDT driver source file
  *
+ * @note
  * SPDX-License-Identifier: Apache-2.0
- * @copyright (C) 2016-2020 Nuvoton Technology Corp. All rights reserved.
+ * Copyright (C) 2013 Nuvoton Technology Corp. All rights reserved.
 *****************************************************************************/
-#include "NuMicro.h"
+#include "NUC230_240.h"
 
 
 /** @addtogroup Standard_Driver Standard Driver
@@ -22,9 +25,9 @@
 */
 
 /**
-  * @brief      Open WWDT and start counting
+  * @brief      Open WWDT function to start counting
   *
-  * @param[in]  u32PreScale     Pre-scale setting of WWDT counter. Valid values are:
+  * @param[in]  u32PreScale     Prescale period for the WWDT counter period. Valid values are:
   *                             - \ref WWDT_PRESCALER_1
   *                             - \ref WWDT_PRESCALER_2
   *                             - \ref WWDT_PRESCALER_4
@@ -42,21 +45,21 @@
   *                             - \ref WWDT_PRESCALER_1536
   *                             - \ref WWDT_PRESCALER_2048
   * @param[in]  u32CmpValue     Setting the window compared value. Valid values are between 0x0 to 0x3F.
-  * @param[in]  u32EnableInt    Enable WWDT time-out interrupt function. Valid values are TRUE and FALSE.
+  * @param[in]  u32EnableInt    Enable WWDT interrupt function. Valid values are TRUE and FALSE.
   *
   * @return     None
   *
-  * @details    This function makes WWDT module start counting with different counter period by pre-scale setting and compared window value.
-  * @note       This WWDT_CTL register can be write only one time after chip is powered on or reset.
+  * @details    This function make WWDT module start counting with different counter period and compared window value.
+  * @note       Application can call this function valid only once after boot up.
   */
 void WWDT_Open(uint32_t u32PreScale,
                uint32_t u32CmpValue,
                uint32_t u32EnableInt)
 {
-    WWDT->CTL = u32PreScale |
-                (u32CmpValue << WWDT_CTL_CMPDAT_Pos) |
-                ((u32EnableInt == TRUE) ? WWDT_CTL_INTEN_Msk : 0U) |
-                WWDT_CTL_WWDTEN_Msk;
+    WWDT->WWDTCR = u32PreScale |
+                   (u32CmpValue << WWDT_WWDTCR_WINCMP_Pos) |
+                   ((u32EnableInt == TRUE) ? WWDT_WWDTCR_WWDTIE_Msk : 0) |
+                   WWDT_WWDTCR_WWDTEN_Msk;
     return;
 }
 
@@ -66,4 +69,4 @@ void WWDT_Open(uint32_t u32PreScale,
 
 /*@}*/ /* end of group Standard_Driver */
 
-/*** (C) COPYRIGHT 2016 Nuvoton Technology Corp. ***/
+/*** (C) COPYRIGHT 2013 Nuvoton Technology Corp. ***/

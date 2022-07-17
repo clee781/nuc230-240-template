@@ -14,13 +14,7 @@
             "presentation": {
                 "reveal": "silent"
             },
-            "problemMatcher": "$gcc",
-            "options": {
-                "env": {
-                    "TARGET" : "${workspaceFolderBasename}"
-                }
-            }
-
+            "problemMatcher": "$gcc"
         },
         {
             "label": "NuLinkOpenOCD",

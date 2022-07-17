@@ -1,7 +1,7 @@
 ######################################
 # target
 ######################################
-TARGET ?= "template"
+TARGET = template
 
 
 ######################################
@@ -26,48 +26,13 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 src/main.c \
-services/usb_vendor.c \
 Device/Nuvoton/M480/Source/system_M480.c \
 Device/Nuvoton/M480/Source/GCC/_syscalls.c \
-StdDriver/src/acmp.c \
-StdDriver/src/bpwm.c \
-StdDriver/src/can.c \
-StdDriver/src/ccap.c \
 StdDriver/src/clk.c \
-StdDriver/src/crc.c \
-StdDriver/src/crypto.c \
-StdDriver/src/dac.c \
-StdDriver/src/eadc.c \
-StdDriver/src/ebi.c \
-StdDriver/src/ecap.c \
-StdDriver/src/emac.c \
-StdDriver/src/epwm.c \
-StdDriver/src/fmc.c \
-StdDriver/src/gpio.c \
-StdDriver/src/hsusbd.c \
-StdDriver/src/i2c.c \
-StdDriver/src/i2s.c \
-StdDriver/src/pdma.c \
-StdDriver/src/qei.c \
-StdDriver/src/qspi.c \
-StdDriver/src/rtc.c \
-StdDriver/src/sc.c \
-StdDriver/src/scuart.c \
-StdDriver/src/sdh.c \
-StdDriver/src/spi.c \
-StdDriver/src/spim.c \
-StdDriver/src/sys.c \
-StdDriver/src/timer_pwm.c \
-StdDriver/src/timer.c \
-StdDriver/src/trng.c \
 StdDriver/src/uart.c \
-StdDriver/src/usbd.c \
-StdDriver/src/usci_i2c.c \
-StdDriver/src/usci_spi.c \
-StdDriver/src/usci_uart.c \
-StdDriver/src/wdt.c \
-StdDriver/src/wwdt.c \
-
+StdDriver/src/spi.c \
+StdDriver/src/gpio.c \
+StdDriver/src/pdma.c
 
 
 
@@ -127,8 +92,7 @@ C_INCLUDES =  \
 -ICMSIS/Include \
 -IDevice/Nuvoton/M480/Include \
 -IStdDriver/inc \
--Iinc \
--Iservices 
+-Iinc
 
 
 # compile gcc flags
@@ -149,7 +113,7 @@ CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = Device/Nuvoton/M480/Source/GCC/M480xxDAE.ld
+LDSCRIPT = Device/Nuvoton/M480/Source/GCC/gcc_arm.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 

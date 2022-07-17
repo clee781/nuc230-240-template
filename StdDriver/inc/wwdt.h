@@ -1,10 +1,13 @@
 /**************************************************************************//**
  * @file     wwdt.h
  * @version  V3.00
- * @brief    M480 series WWDT driver header file
+ * $Revision: 2 $
+ * $Date: 15/05/06 10:18a $
+ * @brief    NUC230_240 series WWDT driver header file
  *
+ * @note
  * SPDX-License-Identifier: Apache-2.0
- * @copyright (C) 2016-2020 Nuvoton Technology Corp. All rights reserved.
+ * Copyright (C) 2013 Nuvoton Technology Corp. All rights reserved.
  *****************************************************************************/
 #ifndef __WWDT_H__
 #define __WWDT_H__
@@ -27,29 +30,26 @@ extern "C"
   @{
 */
 /*---------------------------------------------------------------------------------------------------------*/
-/*  WWDT Prescale Period Constant Definitions                                                              */
+/* WWDTCR Constants Definitions                                                                            */
 /*---------------------------------------------------------------------------------------------------------*/
-#define WWDT_PRESCALER_1        (0 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 1 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_2        (1 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 2 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_4        (2 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 4 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_8        (3 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 8 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_16       (4 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 16 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_32       (5 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 32 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_64       (6 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 64 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_128      (7 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 128 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_192      (8 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 192 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_256      (9 << WWDT_CTL_PSCSEL_Pos)  /*!< Select max time-out period to 256 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_384      (10 << WWDT_CTL_PSCSEL_Pos) /*!< Select max time-out period to 384 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_512      (11 << WWDT_CTL_PSCSEL_Pos) /*!< Select max time-out period to 512 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_768      (12 << WWDT_CTL_PSCSEL_Pos) /*!< Select max time-out period to 768 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_1024     (13 << WWDT_CTL_PSCSEL_Pos) /*!< Select max time-out period to 1024 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_1536     (14 << WWDT_CTL_PSCSEL_Pos) /*!< Select max time-out period to 1536 * (64*WWDT_CLK) \hideinitializer */
-#define WWDT_PRESCALER_2048     (15 << WWDT_CTL_PSCSEL_Pos) /*!< Select max time-out period to 2048 * (64*WWDT_CLK) \hideinitializer */
+#define WWDT_PRESCALER_1        (0 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 1 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_2        (1 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 2 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_4        (2 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 4 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_8        (3 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 8 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_16       (4 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 16 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_32       (5 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 32 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_64       (6 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 64 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_128      (7 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 128 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_192      (8 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 192 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_256      (9 << WWDT_WWDTCR_PERIODSEL_Pos)  /*!< Select max time-out period to 256 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_384      (10 << WWDT_WWDTCR_PERIODSEL_Pos) /*!< Select max time-out period to 384 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_512      (11 << WWDT_WWDTCR_PERIODSEL_Pos) /*!< Select max time-out period to 512 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_768      (12 << WWDT_WWDTCR_PERIODSEL_Pos) /*!< Select max time-out period to 768 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_1024     (13 << WWDT_WWDTCR_PERIODSEL_Pos) /*!< Select max time-out period to 1024 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_1536     (14 << WWDT_WWDTCR_PERIODSEL_Pos) /*!< Select max time-out period to 1536 * (64*WWDT_CLK) */
+#define WWDT_PRESCALER_2048     (15 << WWDT_WWDTCR_PERIODSEL_Pos) /*!< Select max time-out period to 2048 * (64*WWDT_CLK) */
 
-/*---------------------------------------------------------------------------------------------------------*/
-/*  WWDT Reload Counter Keyword Constant Definitions                                                       */
-/*---------------------------------------------------------------------------------------------------------*/
-#define WWDT_RELOAD_WORD        (0x00005AA5)                /*!< Fill this value to WWDT_RLDCNT register to reload WWDT counter \hideinitializer */
+#define WWDT_RELOAD_WORD        (0x00005AA5)                      /*!< Fill this value to WWDTRLD register to reload WWDT counter */
 
 /*@}*/ /* end of group WWDT_EXPORTED_CONSTANTS */
 
@@ -65,10 +65,9 @@ extern "C"
   *
   * @return     None
   *
-  * @details    This macro is used to clear WWDT time-out reset system flag.
-  * \hideinitializer
+  * @details    This macro is used to clear WWDT counter time-out reset system flag.
   */
-#define WWDT_CLEAR_RESET_FLAG()     (WWDT->STATUS = WWDT_STATUS_WWDTRF_Msk)
+#define WWDT_CLEAR_RESET_FLAG()     (WWDT->WWDTSR = WWDT_WWDTSR_WWDTRF_Msk)
 
 /**
   * @brief      Clear WWDT Compared Match Interrupt Flag
@@ -77,48 +76,44 @@ extern "C"
   *
   * @return     None
   *
-  * @details    This macro is used to clear WWDT compared match interrupt flag.
-  * \hideinitializer
+  * @details    This macro is used to clear WWDT counter compare match interrupt flag.
   */
-#define WWDT_CLEAR_INT_FLAG()       (WWDT->STATUS = WWDT_STATUS_WWDTIF_Msk)
+#define WWDT_CLEAR_INT_FLAG()       (WWDT->WWDTSR = WWDT_WWDTSR_WWDTIF_Msk)
 
 /**
-  * @brief      Get WWDT Reset System Flag
+  * @brief      Get WWDT Reset Flag
   *
   * @param      None
   *
-  * @retval     0   WWDT time-out reset system did not occur
-  * @retval     1   WWDT time-out reset system occurred
+  * @retval     0   WWDT did not cause system reset
+  * @retval     1   WWDT counter time-out caused system reset
   *
-  * @details    This macro is used to indicate system has been reset by WWDT time-out reset or not.
-  * \hideinitializer
+  * @details    This macro is used to indicate WWDT counter time-out reset system flag.
   */
-#define WWDT_GET_RESET_FLAG()       ((WWDT->STATUS & WWDT_STATUS_WWDTRF_Msk)? 1 : 0)
+#define WWDT_GET_RESET_FLAG()       ((WWDT->WWDTSR & WWDT_WWDTSR_WWDTRF_Msk)? 1:0)
 
 /**
   * @brief      Get WWDT Compared Match Interrupt Flag
   *
   * @param      None
   *
-  * @retval     0   WWDT compare match interrupt did not occur
-  * @retval     1   WWDT compare match interrupt occurred
+  * @retval     0   WWDT counter compare match interrupt did not occur
+  * @retval     1   WWDT counter compare match interrupt occurred
   *
-  * @details    This macro is used to indicate WWDT counter value matches CMPDAT value or not.
-  * \hideinitializer
+  * @details    This macro is used to indicate WWDT counter compare match interrupt occurred or not.
   */
-#define WWDT_GET_INT_FLAG()         ((WWDT->STATUS & WWDT_STATUS_WWDTIF_Msk)? 1 : 0)
+#define WWDT_GET_INT_FLAG()         ((WWDT->WWDTSR & WWDT_WWDTSR_WWDTIF_Msk)? 1:0)
 
 /**
-  * @brief      Get WWDT Counter
+  * @brief      Get WWDT Counter value
   *
   * @param      None
   *
   * @return     WWDT Counter Value
   *
-  * @details    This macro reflects the current WWDT counter value.
-  * \hideinitializer
+  * @details    This macro to reflects the current WWDT counter value.
   */
-#define WWDT_GET_COUNTER()          (WWDT->CNT)
+#define WWDT_GET_COUNTER()          (WWDT->WWDTCVR)
 
 /**
   * @brief      Reload WWDT Counter
@@ -128,12 +123,10 @@ extern "C"
   * @return     None
   *
   * @details    This macro is used to reload the WWDT counter value to 0x3F.
-  * @note       User can only write WWDT_RLDCNT register to reload WWDT counter value when current WWDT counter value \n
-  *             between 0 and CMPDAT value. If user writes WWDT_RLDCNT when current WWDT counter value is larger than CMPDAT, \n
-  *             WWDT reset signal will generate immediately to reset system.
-  * \hideinitializer
+  * @note       After WWDT enabled, user must reload WWDT counter while current counter is less than compare value \n
+  *             and larger than 0, otherwise WWDT will cause system reset immediately.
   */
-#define WWDT_RELOAD_COUNTER()       (WWDT->RLDCNT = WWDT_RELOAD_WORD)
+#define WWDT_RELOAD_COUNTER()       (WWDT->WWDTRLD = WWDT_RELOAD_WORD)
 
 void WWDT_Open(uint32_t u32PreScale, uint32_t u32CmpValue, uint32_t u32EnableInt);
 
@@ -147,6 +140,6 @@ void WWDT_Open(uint32_t u32PreScale, uint32_t u32CmpValue, uint32_t u32EnableInt
 }
 #endif
 
-#endif /* __WWDT_H__ */
+#endif //__WWDT_H__
 
-/*** (C) COPYRIGHT 2016 Nuvoton Technology Corp. ***/
+/*** (C) COPYRIGHT 2013 Nuvoton Technology Corp. ***/

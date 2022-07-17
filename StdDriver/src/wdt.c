@@ -1,12 +1,15 @@
 /**************************************************************************//**
  * @file     wdt.c
  * @version  V3.00
- * @brief    M480 series WDT driver source file
+ * $Revision: 3 $
+ * $Date: 15/05/06 10:18a $
+ * @brief    NUC230_240 series WDT driver source file
  *
+ * @note
  * SPDX-License-Identifier: Apache-2.0
- * @copyright (C) 2016-2020 Nuvoton Technology Corp. All rights reserved.
+ * Copyright (C) 2013 Nuvoton Technology Corp. All rights reserved.
 *****************************************************************************/
-#include "NuMicro.h"
+#include "NUC230_240.h"
 
 
 /** @addtogroup Standard_Driver Standard Driver
@@ -22,7 +25,7 @@
 */
 
 /**
-  * @brief      Initialize WDT and start counting
+  * @brief      Initialize WDT counter and start counting
   *
   * @param[in]  u32TimeoutInterval  Time-out interval period of WDT module. Valid values are:
   *                                 - \ref WDT_TIMEOUT_2POW4
@@ -33,18 +36,17 @@
   *                                 - \ref WDT_TIMEOUT_2POW14
   *                                 - \ref WDT_TIMEOUT_2POW16
   *                                 - \ref WDT_TIMEOUT_2POW18
-  * @param[in]  u32ResetDelay       Configure WDT time-out reset delay period. Valid values are:
+  * @param[in]  u32ResetDelay       Configure reset delay period while WDT time-out happened. Valid values are:
   *                                 - \ref WDT_RESET_DELAY_1026CLK
   *                                 - \ref WDT_RESET_DELAY_130CLK
   *                                 - \ref WDT_RESET_DELAY_18CLK
   *                                 - \ref WDT_RESET_DELAY_3CLK
-  * @param[in]  u32EnableReset      Enable WDT time-out reset system function. Valid values are TRUE and FALSE.
-  * @param[in]  u32EnableWakeup     Enable WDT time-out wake-up system function. Valid values are TRUE and FALSE.
+  * @param[in]  u32EnableReset      Enable WDT reset system function. Valid values are TRUE and FALSE.
+  * @param[in]  u32EnableWakeup     Enable WDT wake-up system function. Valid values are TRUE and FALSE.
   *
   * @return     None
   *
-  * @details    This function makes WDT module start counting with different time-out interval, reset delay period and choose to \n
-  *             enable or disable WDT time-out reset system or wake-up system.
+  * @details    This function make WDT module start counting with different time-out interval and reset delay period.
   * @note       Please make sure that Register Write-Protection Function has been disabled before using this function.
   */
 void WDT_Open(uint32_t u32TimeoutInterval,
@@ -52,11 +54,11 @@ void WDT_Open(uint32_t u32TimeoutInterval,
               uint32_t u32EnableReset,
               uint32_t u32EnableWakeup)
 {
-    WDT->ALTCTL = u32ResetDelay;
+    WDT->WTCRALT = u32ResetDelay;
 
-    WDT->CTL = u32TimeoutInterval | WDT_CTL_WDTEN_Msk |
-               (u32EnableReset << WDT_CTL_RSTEN_Pos) |
-               (u32EnableWakeup << WDT_CTL_WKEN_Pos);
+    WDT->WTCR = u32TimeoutInterval | WDT_WTCR_WTE_Msk |
+                (u32EnableReset << WDT_WTCR_WTRE_Pos) |
+                (u32EnableWakeup << WDT_WTCR_WTWKE_Pos);
     return;
 }
 
@@ -66,4 +68,4 @@ void WDT_Open(uint32_t u32TimeoutInterval,
 
 /*@}*/ /* end of group Standard_Driver */
 
-/*** (C) COPYRIGHT 2016 Nuvoton Technology Corp. ***/
+/*** (C) COPYRIGHT 2013 Nuvoton Technology Corp. ***/
